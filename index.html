@@ -369,32 +369,46 @@
 
       // Initialize Leaflet map
       document.addEventListener("DOMContentLoaded", function () {
-        const location = [48.0236570368686, 0.18449131180973638];
-        const map = L.map("map").setView(location, 18);
+        try {
+          const location = [48.0236570368686, 0.18449131180973638];
+          const map = L.map("map").setView(location, 18);
 
-        // Add a romantic styled map layer
-        L.tileLayer(
-          "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
-          {
-            maxZoom: 20,
-            attribution:
-              '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>',
+          // Add a romantic styled map layer
+          L.tileLayer(
+            "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
+            {
+              maxZoom: 20,
+              attribution:
+                '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>',
+            }
+          ).addTo(map);
+
+          // Add popup directly
+          L.popup({
+            className: "custom-popup-wrapper",
+            closeButton: false,
+            autoClose: false,
+            closeOnClick: false,
+            closeOnEscapeKey: false,
+          })
+            .setLatLng(location)
+            .setContent(
+              '<div class="custom-popup">Notre premier regard<br>Collège la Madeleine 💕</div>'
+            )
+            .openOn(map);
+        } catch (error) {
+          console.error("Map initialization error:", error);
+          // Fallback content or error message
+          const mapContainer = document.getElementById("map");
+          if (mapContainer) {
+            mapContainer.innerHTML = `
+              <div style="text-align: center; padding: 20px; background-color: #fff5f5; border-radius: 8px;">
+                <p>Carte indisponible 😔</p>
+                <p>Notre lieu de rencontre : Collège la Madeleine, Le Mans</p>
+              </div>
+            `;
           }
-        ).addTo(map);
-
-        // Add popup directly
-        L.popup({
-          className: "custom-popup-wrapper",
-          closeButton: false, // Pas de bouton de fermeture
-          autoClose: false, // Ne se ferme pas au clic ailleurs
-          closeOnClick: false, // Ne se ferme pas au clic sur la carte
-          closeOnEscapeKey: false, // Ne se ferme pas avec la touche Echap
-        })
-          .setLatLng(location)
-          .setContent(
-            '<div class="custom-popup">Notre premier regard<br>Collège la Madeleine 💕</div>'
-          )
-          .openOn(map);
+        }
       });
     </script>
   </body>
