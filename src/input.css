@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-romantic-pink text-gray-900;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 17.5c-.3 0-.5-.1-.7-.3l-7-7c-1.9-1.9-1.9-5.1 0-7 .9-.9 2.2-1.5 3.5-1.5s2.6.5 3.5 1.5l.7.7.7-.7c1.9-1.9 5.1-1.9 7 0 1.9 1.9 1.9 5.1 0 7l-7 7c-.2.2-.4.3-.7.3z' fill='%23FFB6C1' fill-opacity='0.2'/%3E%3C/svg%3E");
+}
+
+.section-title {
+  @apply text-3xl font-romantic font-bold mb-6 text-brand-accent;
+}
+
+.card {
+  @apply bg-white/80 backdrop-blur-sm shadow-md rounded-lg p-6 hover:shadow-xl transition-all duration-300 border border-brand-secondary/20;
+}
+
+.heart {
+  @apply absolute w-6 h-6 text-brand-primary opacity-50 animate-float;
+}
+
+.romantic-button {
+  @apply px-6 py-2 bg-brand-primary text-white rounded-full hover:bg-brand-accent transition-colors duration-300 font-romantic text-lg;
+}
